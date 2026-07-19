@@ -2,7 +2,7 @@ name: Build APK
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -15,7 +15,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: '3.11'
 
       - name: Install dependencies
         run: |
@@ -23,12 +23,10 @@ jobs:
 
       - name: Build APK
         run: |
-          cd prototipo-tcp
-          flet build apk --project "GestionProTCP" --yes --verbose
+          flet build apk --project "GestionProTCP" --yes
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: GestionProTCP-APK
-          path: prototipo-tcp/build/apk/
-          "Agrego el workflow del APK"
+          name: GestionProTCP-app
+          path: build/apk/*.apk
